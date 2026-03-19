@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eat & Balance</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #3d6b4f;
+      --green-light: #6a9e7f;
+      --green-pale: #e8f0eb;
+      --cream: #faf7f2;
+      --brown: #7a5c3e;
+      --dark: #1e2a22;
+      --text: #3a3a3a;
+      --gray: #888;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1e2a22 0%, #3d6b4f 60%, #6a9e7f 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-text { color: #fff; }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 8px 20px;
+      border-radius: 50px;
+      margin-bottom: 28px;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(48px, 7vw, 80px);
+      font-weight: 600;
+      line-height: 1.05;
+      margin-bottom: 12px;
+    }
+
+    .hero-title span {
+      font-style: italic;
+      color: #b8d4c0;
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .hero-meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-meta-item .num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      font-weight: 600;
+      color: #b8d4c0;
+      line-height: 1;
+    }
+
+    .hero-meta-item .label {
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+      margin-top: 4px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      color: var(--green);
+      font-size: 16px;
+      font-weight: 600;
+      padding: 18px 36px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.3s;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+
+    .btn-primary svg { width: 20px; height: 20px; }
+
+    .hero-img-wrap {
+      position: relative;
+    }
+
+    .hero-img-wrap img {
+      width: 100%;
+      max-width: 460px;
+      border-radius: 32px;
+      display: block;
+      object-fit: cover;
+      aspect-ratio: 3/4;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.4);
+    }
+
+    .hero-card {
+      position: absolute;
+      bottom: 32px;
+      left: -24px;
+      background: #fff;
+      border-radius: 20px;
+      padding: 16px 20px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.15);
+      min-width: 200px;
+    }
+
+    .hero-card .card-name {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--dark);
+    }
+
+    .hero-card .card-role {
+      font-size: 13px;
+      color: var(--gray);
+      margin-top: 2px;
+    }
+
+    .hero-card .card-flag {
+      font-size: 20px;
+      margin-top: 6px;
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 80px 24px; }
+
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .section-title em { font-style: italic; color: var(--green); }
+
+    .section-desc {
+      font-size: 17px;
+      color: #666;
+      max-width: 640px;
+      line-height: 1.7;
+    }
+
+    /* ── FOR WHOM ── */
+    .for-whom { background: #fff; }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .card {
+      background: var(--cream);
+      border-radius: 24px;
+      padding: 32px 28px;
+      border: 1px solid #e8e0d8;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(61,107,79,0.1);
+    }
+
+    .card-icon {
+      font-size: 36px;
+      margin-bottom: 16px;
+    }
+
+    .card h3 {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 15px;
+      color: #777;
+      line-height: 1.6;
+    }
+
+    /* ── WHAT'S INSIDE ── */
+    .inside { background: var(--cream); }
+
+    .inside-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 48px;
+    }
+
+    .inside-item {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      background: #fff;
+      border-radius: 20px;
+      padding: 28px 24px;
+      border: 1px solid #ede8e0;
+    }
+
+    .inside-icon {
+      width: 52px;
+      height: 52px;
+      background: var(--green-pale);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .inside-text h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+
+    .inside-text p {
+      font-size: 14px;
+      color: #888;
+      line-height: 1.6;
+    }
+
+    /* ── MODULES ── */
+    .modules { background: #fff; }
+
+    .modules-list {
+      margin-top: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .module-item {
+      border: 1px solid #e8e0d8;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .module-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 24px 28px;
+      cursor: pointer;
+      background: #fff;
+      transition: background 0.2s;
+    }
+
+    .module-header:hover { background: var(--green-pale); }
+
+    .module-num {
+      width: 44px;
+      height: 44px;
+      background: var(--green);
+      color: #fff;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .module-title-wrap { flex: 1; }
+
+    .module-title-wrap h3 {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    .module-title-wrap span {
+      font-size: 13px;
+      color: var(--gray);
+    }
+
+    .module-arrow {
+      font-size: 20px;
+      color: var(--green);
+      transition: transform 0.3s;
+    }
+
+    .module-body {
+      display: none;
+      padding: 0 28px 24px 92px;
+    }
+
+    .module-body.open { display: block; }
+
+    .module-body ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .module-body ul li {
+      font-size: 15px;
+      color: #666;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .module-body ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--green-light);
+    }
+
+    /* ── PRICE ── */
+    .price-section {
+      background: linear-gradient(135deg, var(--dark) 0%, var(--green) 100%);
+      color: #fff;
+      text-align: center;
+    }
+
+    .price-section .section-title { color: #fff; }
+    .price-section .section-title em { color: #b8d4c0; }
+
+    .price-box {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 32px;
+      padding: 48px 40px;
+      max-width: 560px;
+      margin: 48px auto 0;
+      backdrop-filter: blur(10px);
+    }
+
+    .price-old {
+      font-size: 20px;
+      color: rgba(255,255,255,0.45);
+      text-decoration: line-through;
+      margin-bottom: 8px;
+    }
+
+    .price-current {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 72px;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .price-currency {
+      font-size: 28px;
+      vertical-align: super;
+    }
+
+    .price-note {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 32px;
+    }
+
+    .price-includes {
+      text-align: left;
+      margin-bottom: 36px;
+    }
+
+    .price-includes li {
+      list-style: none;
+      font-size: 15px;
+      color: rgba(255,255,255,0.85);
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .price-includes li:last-child { border-bottom: none; }
+
+    .check {
+      width: 22px;
+      height: 22px;
+      background: rgba(184,212,192,0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    .btn-tg {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #fff;
+      color: var(--green);
+      font-size: 17px;
+      font-weight: 700;
+      padding: 20px 44px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.3s;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      width: 100%;
+      justify-content: center;
+    }
+
+    .btn-tg:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+
+    .price-guarantee {
+      margin-top: 20px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* ── VALUE ── */
+    .value-section { background: var(--cream); }
+
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 48px;
+    }
+
+    .value-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 32px 24px;
+      text-align: center;
+      border: 1px solid #ede8e0;
+    }
+
+    .value-card .v-icon { font-size: 40px; margin-bottom: 16px; }
+
+    .value-card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+
+    .value-card p { font-size: 14px; color: #888; line-height: 1.6; }
+
+    /* ── AUTHOR ── */
+    .author { background: #fff; }
+
+    .author-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .author-img {
+      border-radius: 28px;
+      width: 100%;
+      object-fit: cover;
+      aspect-ratio: 3/4;
+      box-shadow: 0 20px 60px rgba(61,107,79,0.15);
+    }
+
+    .author-text .section-label { margin-bottom: 8px; }
+
+    .author-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 20px;
+      line-height: 1.1;
+    }
+
+    .author-bio {
+      font-size: 16px;
+      color: #666;
+      line-height: 1.8;
+      margin-bottom: 28px;
+    }
+
+    .author-facts {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .author-fact {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      color: var(--dark);
+    }
+
+    .author-fact .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── FAQ ── */
+    .faq { background: var(--cream); }
+
+    .faq-list {
+      margin-top: 48px;
+      max-width: 760px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .faq-item {
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid #ede8e0;
+      overflow: hidden;
+    }
+
+    .faq-q {
+      padding: 22px 24px;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--dark);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .faq-q:hover { color: var(--green); }
+
+    .faq-icon {
+      font-size: 22px;
+      color: var(--green);
+      flex-shrink: 0;
+      transition: transform 0.3s;
+    }
+
+    .faq-a {
+      display: none;
+      padding: 0 24px 22px;
+      font-size: 15px;
+      color: #777;
+      line-height: 1.7;
+    }
+
+    .faq-a.open { display: block; }
+
+    /* ── CTA ── */
+    .cta {
+      background: var(--green-pale);
+      text-align: center;
+      padding: 80px 24px;
+    }
+
+    .cta .section-title { margin-bottom: 16px; }
+
+    .cta .section-desc {
+      margin: 0 auto 40px;
+      text-align: center;
+    }
+
+    .cta-date {
+      display: inline-block;
+      background: var(--green);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 8px 24px;
+      border-radius: 50px;
+      margin-bottom: 32px;
+      letter-spacing: 1px;
+    }
+
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--green);
+      color: #fff;
+      font-size: 17px;
+      font-weight: 700;
+      padding: 20px 48px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.3s;
+      box-shadow: 0 8px 32px rgba(61,107,79,0.3);
+    }
+
+    .btn-cta:hover {
+      background: var(--dark);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(30,42,34,0.3);
+    }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials {
+      background: #fff;
+      padding: 80px 24px;
+    }
+
+    .testimonials .section-title { text-align: center; }
+    .testimonials .section-label { text-align: center; }
+    .testimonials .section-desc { text-align: center; margin: 0 auto 48px; }
+
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .testi-card {
+      background: var(--cream);
+      border-radius: 20px;
+      padding: 28px;
+      border: 1px solid #ede8e0;
+      position: relative;
+    }
+
+    .testi-card::before {
+      content: '\201C';
+      position: absolute;
+      top: 16px;
+      left: 24px;
+      font-size: 56px;
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--green-light);
+      line-height: 1;
+      opacity: 0.5;
+    }
+
+    .testi-text {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--text);
+      padding-top: 24px;
+    }
+
+    .testi-result {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--green-pale);
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 50px;
+      margin-top: 16px;
+    }
+
+    .testi-name {
+      margin-top: 20px;
+      font-size: 13px;
+      color: var(--gray);
+      font-weight: 500;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 14px;
+    }
+
+    footer a { color: rgba(255,255,255,0.7); text-decoration: none; }
+
+    /* ── STICKY CTA ── */
+    .sticky-cta {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 100;
+    }
+
+    .sticky-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--green);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 8px 32px rgba(61,107,79,0.4);
+      transition: all 0.3s;
+    }
+
+    .sticky-btn:hover { background: var(--dark); transform: translateY(-2px); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-img-wrap { order: -1; }
+      .hero-img-wrap img { max-width: 100%; aspect-ratio: 4/3; }
+      .hero-card { left: 0; bottom: -20px; }
+      .author-inner { grid-template-columns: 1fr; }
+      .author-img { aspect-ratio: 4/3; }
+      .price-current { font-size: 56px; }
+      .sticky-cta { bottom: 16px; right: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- STICKY CTA -->
+<div class="sticky-cta">
+  <a href="https://t.me/lida2104" target="_blank" class="sticky-btn">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.17 13.667l-2.95-.924c-.64-.203-.654-.64.136-.954l11.57-4.461c.537-.194 1.006.131.968.893z"/></svg>
+    Записатись
+  </a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge">🌿 Старт 30 березня</div>
+      <h1 class="hero-title">Eat &<br><span>Balance</span></h1>
+      <p class="hero-subtitle">30-денний курс збалансованого харчування з особистим супроводом. Без дієт. Без заборон. З розумінням свого тіла.</p>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <span class="num">30</span>
+          <span class="label">днів курсу</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="num">17</span>
+          <span class="label">уроків</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="num">4</span>
+          <span class="label">живі ефіри</span>
+        </div>
+      </div>
+      <a href="https://t.me/lida2104" target="_blank" class="btn-primary">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.17 13.667l-2.95-.924c-.64-.203-.654-.64.136-.954l11.57-4.461c.537-.194 1.006.131.968.893z"/></svg>
+        Записатись
+      </a>
+    </div>
+    <div class="hero-img-wrap">
+      <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663417172317/duXDXSnErwELHQjV.jpeg" alt="Лідія Кульбакова — нутриціологиня" />
+      <div class="hero-card">
+        <div class="card-name">Лідія Кульбакова</div>
+        <div class="card-role">Нутриціологиня</div>
+        <div class="card-flag">🇬🇧 Британська освіта</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR WHOM -->
+<section class="for-whom">
+  <div class="container">
+    <div class="section-label">Для кого цей курс</div>
+    <h2 class="section-title">Ти впізнаєш<br>себе <em>тут?</em></h2>
+    <p class="section-desc">Цей курс створений для жінок, які хочуть нарешті розібратись зі своїм харчуванням — без стресу і самозвинувачень.</p>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icon">🔄</div>
+        <h3>Ти в циклі дієт</h3>
+        <p>Починаєш з понеділка, тримаєшся тиждень-два, а потім зриваєшся і все починається знову.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🍫</div>
+        <h3>Тягне на солодке</h3>
+        <p>Особливо ввечері або в стресові моменти. Відчуваєш провину після кожного «зриву».</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">😰</div>
+        <h3>Харчування хаотичне</h3>
+        <p>Немає режиму, пропускаєш прийоми їжі, а потім переїдаєш. Не розумієш що і скільки їсти.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⚖️</div>
+        <h3>Вага не рухається</h3>
+        <p>Намагаєшся харчуватись правильно, але результату немає. Не розумієш чому тіло не реагує.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🧠</div>
+        <h3>Їж від емоцій</h3>
+        <p>Заїдаєш стрес, тривогу, нудьгу. Їжа стала способом справлятись з емоціями.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌿</div>
+        <h3>Хочеш системи</h3>
+        <p>Розумієш що потрібні зміни, але не знаєш з чого почати і як зробити це надовго.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INSIDE -->
+<section class="inside">
+  <div class="container">
+    <div class="section-label">Що входить у курс</div>
+    <h2 class="section-title">Все що тобі<br><em>потрібно</em></h2>
+    <p class="section-desc">Не просто відеоуроки — а повноцінний супровід протягом 30 днів.</p>
+    <div class="inside-grid">
+      <div class="inside-item">
+        <div class="inside-icon">🎥</div>
+        <div class="inside-text">
+          <h3>Відео та аудіо уроки</h3>
+          <p>17 уроків у форматі відео та аудіо — мікс для зручного навчання у будь-який час.</p>
+        </div>
+      </div>
+      <div class="inside-item" style="display:none">
+        <div class="inside-icon">🎧</div>
+        <div class="inside-text">
+          <h3>Аудіо-подкасти</h3>
+          <p>Голосові уроки для тих, хто любить слухати — у дорозі, на прогулянці, вдома.</p>
+        </div>
+      </div>
+      <div class="inside-item">
+        <div class="inside-icon">📡</div>
+        <div class="inside-text">
+          <h3>4 живі ефіри</h3>
+          <p>Разом розбираємо теми, відповідаю на питання в реальному часі.</p>
+        </div>
+      </div>
+      <div class="inside-item">
+        <div class="inside-icon">🍽️</div>
+        <div class="inside-text">
+          <h3>Розбір тарілок</h3>
+          <p>Надсилаєш фото свого раціону — я аналізую і даю персональний зворотній зв'язок.</p>
+        </div>
+      </div>
+      <div class="inside-item">
+        <div class="inside-icon">💬</div>
+        <div class="inside-text">
+          <h3>Закритий чат</h3>
+          <p>Спільнота учасниць, підтримка, обмін досвідом і мої відповіді щодня.</p>
+        </div>
+      </div>
+      <div class="inside-item">
+        <div class="inside-icon">📋</div>
+        <div class="inside-text">
+          <h3>Гайди та матеріали</h3>
+          <p>Практичні шпаргалки, чек-листи і інструменти які залишаться з тобою назавжди.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULES -->
+<section class="modules">
+  <div class="container">
+    <div class="section-label">Програма курсу</div>
+    <h2 class="section-title">4 модулі —<br><em>повна трансформація</em></h2>
+    <p class="section-desc">Від розуміння основ до впровадження в реальне життя — крок за кроком.</p>
+    <div class="modules-list">
+      <div class="module-item">
+        <div class="module-header" onclick="toggleModule(this)">
+          <div class="module-num">1</div>
+          <div class="module-title-wrap">
+            <h3>Фундамент здорових стосунків з їжею</h3>
+            <span>4 уроки · Тижень 1</span>
+          </div>
+          <div class="module-arrow">+</div>
+        </div>
+        <div class="module-body">
+          <ul>
+            <li>«Як отримати максимум від курсу і не кинути на півдорозі»</li>
+            <li>«Скільки їсти, щоб худнути, але не голодувати: ваш персональний калькулятор енергії»</li>
+            <li>«Цукрова гойдалка: чому насправді тягне на солодке і як злізти з цієї голки без сили волі»</li>
+            <li>«2 літри води: міф чи робочий інструмент? Як вода насправді впливає на вагу»</li>
+          </ul>
+        </div>
+      </div>
+      <div class="module-item">
+        <div class="module-header" onclick="toggleModule(this)">
+          <div class="module-num">2</div>
+          <div class="module-title-wrap">
+            <h3>Біохімія вашого тіла: як змусити їжу працювати на вас</h3>
+            <span>5 уроків · Тижень 2</span>
+          </div>
+          <div class="module-arrow">+</div>
+        </div>
+        <div class="module-body">
+          <ul>
+            <li>«Тарілка-райдуга: як кольори в їжі впливають на вашу шкіру, енергію та імунітет»</li>
+            <li>«Чому корисна їжа не завжди працює: секрети засвоєння та біодоступності»</li>
+            <li>«Клітковина: ваш секретний інструмент для плоского живота та легкості»</li>
+            <li>«Як готувати, щоб зберегти користь: 5 помилок, які вбивають вітаміни»</li>
+            <li>«Закони травлення: як пережовування та послідовність їжі можуть прибрати здуття»</li>
+          </ul>
+        </div>
+      </div>
+      <div class="module-item">
+        <div class="module-header" onclick="toggleModule(this)">
+          <div class="module-num">3</div>
+          <div class="module-title-wrap">
+            <h3>Гормональна гармонія та антистрес</h3>
+            <span>4 уроки · Тижень 3</span>
+          </div>
+          <div class="module-arrow">+</div>
+        </div>
+        <div class="module-body">
+          <ul>
+            <li>«Чому вага стрибає і це не жир: як відрізнити набряк від реального набору ваги»</li>
+            <li>«Кортизол — головний ворог схуднення: чому тіло не віддає жир у стані стресу»</li>
+            <li>«Гармонійний lifestyle жінки: як сон, відпочинок та хобі впливають на вагу більше, ніж дієти»</li>
+            <li>«Фізична активність, яка спалює жир, а не нерви: як тренуватись для результату, а не для втоми»</li>
+          </ul>
+        </div>
+      </div>
+      <div class="module-item">
+        <div class="module-header" onclick="toggleModule(this)">
+          <div class="module-num">4</div>
+          <div class="module-title-wrap">
+            <h3>Інтеграція в реальне життя</h3>
+            <span>4 уроки · Тижень 4</span>
+          </div>
+          <div class="module-arrow">+</div>
+        </div>
+        <div class="module-body">
+          <ul>
+            <li>«Фізичний чи емоційний голод: як перестати заїдати стрес і втому»</li>
+            <li>«Як їсти в ресторанах та гостях і не випадати з режиму: стратегія гнучкості»</li>
+            <li>«Як повернутись до рутини після відпустки чи паузи без стресу та почуття провини»</li>
+            <li>«Як зробити здоровий спосіб життя своєю системою, а не тимчасовим ривком»</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUE -->
+<section class="value-section">
+  <div class="container">
+    <div class="section-label">Чому це вигідно</div>
+    <h2 class="section-title">Особистий супровід<br><em>за доступною ціною</em></h2>
+    <p class="section-desc">Зазвичай індивідуальна робота з нутриціологом коштує набагато дорожче. Тут ти отримуєш особисту увагу в груповому форматі.</p>
+    <div class="value-grid">
+      <div class="value-card">
+        <div class="v-icon">👁️</div>
+        <h3>Особистий контроль</h3>
+        <p>Я бачу твій прогрес і реагую на нього — не залишаю один на один з питаннями.</p>
+      </div>
+      <div class="value-card">
+        <div class="v-icon">🍽️</div>
+        <h3>Розбір твоїх тарілок</h3>
+        <p>Надсилаєш фото — отримуєш персональний аналіз і рекомендації саме для тебе.</p>
+      </div>
+      <div class="value-card">
+        <div class="v-icon">📡</div>
+        <h3>Живі ефіри</h3>
+        <p>4 прямі ефіри де можна задати будь-яке питання і отримати відповідь наживо.</p>
+      </div>
+      <div class="value-card">
+        <div class="v-icon">💬</div>
+        <h3>Підтримка щодня</h3>
+        <p>Закритий чат де я відповідаю на питання і підтримую протягом усіх 30 днів.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICE -->
+<section class="price-section">
+  <div class="container">
+    <div class="section-label" style="color:#b8d4c0;">Вартість курсу</div>
+    <h2 class="section-title">Інвестиція<br><em>в себе</em></h2>
+    <div class="price-box">
+      <div class="price-old">Вартість індивідуальної роботи: 8 000+ грн</div>
+      <div class="price-current"><span class="price-currency">₴</span>3 990</div>
+      <div class="price-note">повна вартість курсу · одноразовий платіж</div>
+      <ul class="price-includes">
+        <li><span class="check">✓</span> 17 уроків (відео + аудіо формат)</li>
+        <li><span class="check">✓</span> 4 живі ефіри з Лідією</li>
+        <li><span class="check">✓</span> Розбір твоїх тарілок особисто</li>
+        <li><span class="check">✓</span> Закритий чат підтримки 30 днів</li>
+        <li><span class="check">✓</span> Гайди, чек-листи, матеріали</li>
+        <li><span class="check">✓</span> Особистий контроль прогресу</li>
+      </ul>
+      <a href="https://t.me/lida2104" target="_blank" class="btn-tg">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.17 13.667l-2.95-.924c-.64-.203-.654-.64.136-.954l11.57-4.461c.537-.194 1.006.131.968.893z"/></svg>
+        Записатись
+      </a>
+      <div class="price-guarantee">🗓 Старт: 30 березня · Місць обмежена кількість</div>
+    </div>
+  </div>
+</section>
+
+<!-- AUTHOR -->
+<section class="author">
+  <div class="container">
+    <div class="author-inner">
+      <div>
+        <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663417172317/duXDXSnErwELHQjV.jpeg" alt="Лідія Кульбакова" class="author-img" />
+      </div>
+      <div class="author-text">
+        <div class="section-label">Автор курсу</div>
+        <div class="author-name">Лідія<br>Кульбакова</div>
+        <p class="author-bio">
+          Я нутриціологиня з британською освітою, яка вірить що здорове харчування — це не про обмеження, а про розуміння свого тіла і турботу про себе.
+        </p>
+        <p class="author-bio">
+          У своїй роботі я поєдную науковий підхід з теплою підтримкою — тому що знаю: зміни відбуваються не від страху, а від любові до себе.
+        </p>
+        <div class="author-facts">
+          <div class="author-fact"><div class="dot"></div>Британська освіта в галузі нутриціології 🇬🇧</div>
+          <div class="author-fact"><div class="dot"></div>Практикуючий нутриціолог та коуч</div>
+          <div class="author-fact"><div class="dot"></div>Автор курсу Eat & Balance</div>
+          <div class="author-fact"><div class="dot"></div>Допомагаю жінкам побудувати здорові стосунки з їжею</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="container">
+    <div class="section-label">Питання та відповіді</div>
+    <h2 class="section-title">Часті <em>запитання</em></h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Скільки часу потрібно щодня?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">Від 20 до 40 хвилин на день — залежно від уроку. Аудіо-подкасти можна слухати у дорозі або під час готування. Курс розроблений для зайнятих жінок.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Чи підійде курс якщо у мене немає досвіду?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">Так, курс розрахований на будь-який рівень підготовки. Ми починаємо з основ і поступово заглиблюємось. Ніяких складних термінів — тільки зрозумілі пояснення.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Що якщо я пропущу живий ефір?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">Всі ефіри записуються і будуть доступні в чаті. Ти нічого не пропустиш — можна переглянути у зручний час.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Чи є дієтичне меню або обмеження в їжі?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">Ні. Цей курс не про заборони і дієти. Ми навчаємось харчуватись збалансовано без жорстких обмежень — так щоб це стало твоєю нормою, а не черговою дієтою.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Як відбувається оплата?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">Напиши мені в Telegram @lida2104 — я відповім на всі питання і надішлю реквізити для оплати. Після оплати ти одразу отримуєш доступ до закритого чату.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Скільки людей буде в групі?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">Кількість місць обмежена, щоб я могла приділити увагу кожній учасниці. Саме тому важливо записатись заздалегідь.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="container">
+    <div class="section-label">Відгуки учасниць</div>
+    <h2 class="section-title">Що кажуть<br><em>дівчата</em></h2>
+    <p class="section-desc">Реальні результати — не лише у цифрах, а у відчутті себе.</p>
+    <div class="testi-grid">
+
+      <div class="testi-card">
+        <div class="testi-text">
+          Ти просто — розкішний максимум з нутриціологів 🏆 В тебе прям до цього талант, і підхід, і спілкування, і підтримка, і меню реальне, без всяких наворотів, що правда смачне і кожний без проблем приготувати може.
+        </div>
+        <div class="testi-result">📏 Талія: 77→69,5 см · Вага: 68→62,5 кг</div>
+        <div class="testi-name">Учасниця курсу</div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-text">
+          Мені здається, що багато в чому я змогла пройти це саме завдяки тобі і твоїй підтримці ❤️ За тиждень у мене −2 кг, пішли об'єми зі стегон, живота та грудей (−2 см) і найголовніше — у мене краще почав працювати ШКТ. Зник постійний дискомфорт.
+        </div>
+        <div class="testi-result">⚖️ −2 кг за тиждень · −2 см в об'ємах</div>
+        <div class="testi-name">Katerinaki</div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-text">
+          Співпраця з тобою стала для мене справжнім відкриттям і цінним досвідом. Тепер я розумію, як правильно збирати свою тарілку, щоб у ній були всі необхідні елементи. Я зрозуміла, що можна залишатися у балансі навіть тоді, коли це суші, піца чи інші улюблені страви. Це принесло відчуття свободи та гармонії з собою.
+        </div>
+        <div class="testi-result">🌿 Свобода від заборон · Баланс з їжею</div>
+        <div class="testi-name">Учасниця курсу</div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-text">
+          Ну я на збалансованому харчуванні, це вже моя рутина і я продовжую. Їм тричі на день — і відчуваю, що це не погано) сон добрий, важкості нема. У мене дійсно зменшився живіт, менше тягне на солодке і я себе можу зупинити. Прям реально круто усвідомлювати, що тепер я контролюю ситуацію, а не їжа мною.
+        </div>
+        <div class="testi-result">💪 Контроль над їжею · Менше тяги на солодке</div>
+        <div class="testi-name">Учасниця курсу</div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-text">
+          Лідіє, я дуже вдячна за наш з вами досвід та супровід! Я отримала важливі інсайди, в першу чергу про власне тіло та поведінку, а також багато про їжу. Ти допомогла мені зрозуміти, що не добираю білок і як його добирати, також допомогла працювати з переїданнями та режимом харчування. Дякую за індивідуальний підхід, поради, підказки.
+        </div>
+        <div class="testi-result">🧠 Розуміння тіла · Робота з переїданнями</div>
+        <div class="testi-name">Учасниця курсу</div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-text">
+          Мені дуже сподобалась наша робота, я тепер більше розумію своє тіло, що я хочу і що я можу з'їсти. Стало легше відноситись до їжі і тепер багато продуктів для мене не табу, а просто розуміння коли їх можна і за чим. Дуже тобі дякую 💋
+        </div>
+        <div class="testi-result">🍽️ Їжа без табу · Легкість у виборі</div>
+        <div class="testi-name">Учасниця курсу</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta">
+  <div class="container">
+    <div class="cta-date">🗓 Старт: 30 березня</div>
+    <h2 class="section-title">Готова почати<br><em>свій шлях?</em></h2>
+    <p class="section-desc">Напиши мені в Telegram — я відповім на всі питання і допоможу визначитись. Місць обмежена кількість.</p>
+    <a href="https://t.me/lida2104" target="_blank" class="btn-cta">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.17 13.667l-2.95-.924c-.64-.203-.654-.64.136-.954l11.57-4.461c.537-.194 1.006.131.968.893z"/></svg>
+      Написати в Telegram
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Лідія Кульбакова &nbsp;·&nbsp;
+    <a href="https://t.me/lida2104" target="_blank" title="Telegram" style="display:inline-flex;align-items:center;gap:4px;">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.17 13.667l-2.95-.924c-.64-.203-.654-.64.136-.954l11.57-4.461c.537-.194 1.006.131.968.893z"/></svg>
+    </a>&nbsp;·&nbsp;
+    <a href="https://www.instagram.com/kulbakova_lidiia" target="_blank" title="Instagram" style="display:inline-flex;align-items:center;gap:4px;">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </a>
+  </p>
+</footer>
+
+<script>
+  function toggleModule(header) {
+    const body = header.nextElementSibling;
+    const arrow = header.querySelector('.module-arrow');
+    const isOpen = body.classList.contains('open');
+    document.querySelectorAll('.module-body').forEach(b => b.classList.remove('open'));
+    document.querySelectorAll('.module-arrow').forEach(a => a.textContent = '+');
+    if (!isOpen) {
+      body.classList.add('open');
+      arrow.textContent = '−';
+    }
+  }
+
+  function toggleFaq(q) {
+    const answer = q.nextElementSibling;
+    const icon = q.querySelector('.faq-icon');
+    const isOpen = answer.classList.contains('open');
+    document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+    document.querySelectorAll('.faq-icon').forEach(i => i.textContent = '+');
+    if (!isOpen) {
+      answer.classList.add('open');
+      icon.textContent = '−';
+    }
+  }
+</script>
+</body>
+</html>
